@@ -1,8 +1,5 @@
 ## Installation
 
-Use your favorite Maven-compatible build tool to pull the dependency (and its transitive dependencies) from Maven Central:
-
-Maven:
 
 ```xml
 <repositories>

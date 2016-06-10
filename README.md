@@ -15,3 +15,14 @@
     <version>-SNAPSHOT</version>
 </dependency>
 ```
+
+## Usage
+
+You must provide some properties that are shown below. For example,
+
+`application.yml` :
+```yml
+jwt:
+  header: Authorization
+  publicKey: -----BEGIN PUBLIC KEY----- ... -----END PUBLIC KEY-----
+```

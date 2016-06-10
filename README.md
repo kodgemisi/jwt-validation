@@ -12,7 +12,7 @@
 <dependency>
     <groupId>com.github.kodgemisi</groupId>
     <artifactId>jwt-validation</artifactId>
-    <version>-SNAPSHOT</version>
+    <version>master-SNAPSHOT</version>
 </dependency>
 ```
 

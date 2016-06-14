@@ -15,3 +15,7 @@
     <version>-SNAPSHOT</version>
 </dependency>
 ```
+
+## Usage
+
+You must provide ```inl```

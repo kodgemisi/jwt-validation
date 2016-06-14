@@ -1,7 +1,9 @@
 package com.kodgemisi.common.jwtvalidation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -14,11 +16,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@Profile("development")
+@ComponentScan("com.kodgemisi.common.jwtvalidation")
+@Profile("dev")
 public class SecurityConfigDevelopment extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private JwtUnauthorizedEntryPoint unauthorizedHandler;
+
+    @Value("${security.allowedUrls}")
+    private String[] allowedUrls;
 
     @Bean
     public UsernamePasswordAuthenticationFilter authenticationTokenFilterBean() throws Exception {
@@ -39,10 +45,11 @@ public class SecurityConfigDevelopment extends WebSecurityConfigurerAdapter {
                 // don't create session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
+                .authorizeRequests().antMatchers(allowedUrls).permitAll().and()
                 .authorizeRequests().anyRequest().permitAll();
 
         httpSecurity.headers().frameOptions().disable();
-        httpSecurity.authorizeRequests().antMatchers("/console/**", "/h2-console/**").permitAll();
+//        httpSecurity.authorizeRequests().antMatchers("/console/**", "/h2-console/**").permitAll();
 
         // Custom JWT based security filter
         httpSecurity

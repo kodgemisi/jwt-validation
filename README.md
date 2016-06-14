@@ -12,10 +12,21 @@
 <dependency>
     <groupId>com.github.kodgemisi</groupId>
     <artifactId>jwt-validation</artifactId>
-    <version>-SNAPSHOT</version>
+    <version>master-SNAPSHOT</version>
 </dependency>
 ```
 
 ## Usage
 
+<<<<<<< HEAD
 You must provide ```inl```
+=======
+You must provide some properties that are shown below. For example,
+
+`application.yml` :
+```yml
+jwt:
+  header: Authorization
+  publicKey: -----BEGIN PUBLIC KEY----- ... -----END PUBLIC KEY-----
+```
+>>>>>>> db60289eadc430a14a122b823cfbc671ada031b4

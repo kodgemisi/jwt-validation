@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("${security.allowedUrls}")
     private String[] allowedUrls;
-    
+
     @Bean
     public UsernamePasswordAuthenticationFilter authenticationTokenFilterBean() throws Exception {
         JwtAuthenticationTokenFilter authenticationTokenFilter = new JwtAuthenticationTokenFilter();
@@ -45,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // don't create session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
+                .authorizeRequests().antMatchers(allowedUrls).permitAll().and()
                 .authorizeRequests().anyRequest().authenticated();
 
         // Custom JWT based security filter
